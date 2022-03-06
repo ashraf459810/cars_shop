@@ -1,0 +1,25 @@
+{
+  "development": {
+    "username": "root",
+    "password": "12345678",
+    "database": "carssell",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "driver": "sqlite3",
+    "filename": "./database/database.sql"
+  },
+  "test": {
+    "username": "root",
+    "password": "12345678",
+    "database": "cars_sell",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "12345678",
+    "database": "cars_sell",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

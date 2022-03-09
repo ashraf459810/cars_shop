@@ -7,6 +7,7 @@ const purchased  = require('../tables/purchased');
 const sold  = require('../tables/sold');
 const purchased_cars  = require('../tables/purchased_cars');
 const sold_cars  = require('../tables/sold_cars');
+const users_tokens = require('../tables/users_tokens');
 
 
 
@@ -14,6 +15,7 @@ const initialize = () =>{
 
 
 app.use(users);
+app.use(users_tokens);
 app.use(brands);
 app.use(models);
 app.use(gallerys);

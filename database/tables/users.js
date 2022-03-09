@@ -20,11 +20,7 @@ const users = sequelize.define('users', {
   name: {
     type: Sequelize.STRING
   },
-  token: {
-    type: Sequelize.STRING
-  
 
-  },
 
   password: {
     type: Sequelize.STRING

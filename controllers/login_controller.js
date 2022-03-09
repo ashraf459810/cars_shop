@@ -1,10 +1,15 @@
 
 const users =require('../database/tables/users')
 
+const jwt = require("jsonwebtoken");
+var md5 = require('md5');
+
+
 
 
 
 login = (req ,res, body) =>{
+  var password = body.password;
     
 if (body.name ==null || body.password ==null){
 
@@ -12,30 +17,51 @@ if (body.name ==null || body.password ==null){
 }
 else {
     var name = body.name;
-    var password = body.password;
+   var password = md5(body.password)
+
+      // console.log(password);
+      // Store hash in your password DB.
+  
 
      
-      isTokenExist(name , password).then( exist =>{
-        console.log(exist);
+      isUserExist(name , password).then( exist =>{
+
         if (exist) {
 
+  
+         
+
           users.findAll({
+       
                 where: {
                   name: name,
                   password : password
                 }
               }).then(user=>{
 
+                var  token = jwt.sign(
+                  { name: name,  },
+                 Date.now().toString +  process.env.JWT_KEY,
+                  {
+                    expiresIn: "1000h",
+                  }
+                )
+                var user = {"user" :user , "token" : token}
+            res.status(200).send(user ) ;}
+               )
               
-            res.status(200).send(user);}
-               ) }
+              }
+
+
+
+              
              else {
                  res.status(500).send('wrong name or passwrod')
              }
     });
-
+  
 }
-function isTokenExist (name , password) {
+function isUserExist (name , password) {
     return users.count({ where: { name: name , password :password} })
       .then(count => {
       

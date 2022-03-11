@@ -3,7 +3,7 @@ const purchased_cars = require('../database/tables/purchased_cars');
 const gallery  = require('../database/tables/gallery')
 purchase_car = (req,res ,body) =>{
     var from = body.from;
-
+    
     var date = body.date;
     var cost = body.cost;
     var brand= body.brand_id;
@@ -38,11 +38,13 @@ var gallery_id ;
     from: from,
     date : date,
     cost: cost
-}).then(function (purchased) {
-
+}).then( (purchased=> {
+    console.log(purchased);
+    
+    
     if (purchased) {
 
-      console.log(purchased);
+      console.log(purchased.purchased_id);
       purchased_cars.create({
         
         brand_id : brand,
@@ -67,7 +69,7 @@ var gallery_id ;
       
       
     }        }  )
-});}else {
+      )});}else {
   res.status(500).send("error");
 }
 }

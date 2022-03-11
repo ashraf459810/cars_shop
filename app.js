@@ -6,11 +6,13 @@ const purchase_car = require("./routes/purchase_car");
 const initialize = require('./database/initilize_tables/initialize_tables');
 const register = require ('./routes/register')
 const bodyParser = require('body-parser');
-const login = require('./routes/login')
+const login = require('./routes/login');
+const sell_car = require('./routes/sell_car')
 
 
 const app = express();
 const port = process.env.port ||3307;
+app.use('/sell_car',sell_car);
 app.use('/login',login);
 app.use('/register', register);
 app.use('/purchase_car',purchase_car);

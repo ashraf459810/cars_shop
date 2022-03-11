@@ -2,6 +2,7 @@
 const jwt = require("jsonwebtoken");
 const users =require('../database/tables/users');
 const users_tokens = require('../database/tables/users_tokens');
+const gallery = require('../database/tables/gallery');
 const { use } = require("../routes/purchase_car");
 
 const md5 = require("md5");
@@ -17,7 +18,8 @@ register = (req ,res, body) =>{
 
     res.status(500).send('password and user name required');
   }
- 
+  
+
 
  const exist= isUserExist(body.name).then(value=>{
    if (value==false){
@@ -44,7 +46,12 @@ console.log(users);
       user_token : token,
       user_id : users.user_id
       }).then(users);{
-        const response  ={"user":users, "token": token}
+
+        gallery.create({
+          gallery_name : name,
+          user_id : users.user_id
+          })
+            const response  ={"user":users, "token": token}
         res.status(200).send(response);
         
       };
@@ -56,7 +63,7 @@ console.log(users);
     
      
 
-
+   
    }
      else  {
      res.status(500).send('user already exist try another name please');

@@ -1,6 +1,7 @@
+const brands  = require('../tables/brand');
 
 const users  = require('../tables/users');
-const brands  = require('../tables/brand');
+
 const models = require('../tables/model');
 const gallerys = require('../tables/gallery');
 const purchased  = require('../tables/purchased');

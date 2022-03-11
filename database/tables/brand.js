@@ -13,13 +13,7 @@ const brands = sequelize.define('brands', {
     primaryKey : true,
     autoIncrement: true 
   },
-  // model_id: {
-  //   type: Sequelize.INTEGER,
-  //   references: {
-  //       model: 'models', // 'fathers' refers to table name
-  //       key: 'model_id', // 'id' refers to column name in fathers table
-  //    }
-  // },
+
   brand_name: {
     type: Sequelize.STRING, 
   },
